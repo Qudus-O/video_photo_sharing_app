@@ -1,0 +1,17 @@
+[project]
+name = "FastAPI_Photo_and_Video_sharing_Web_App"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "aiosqlite==0.21.0",
+    "fastapi>=0.125.0",
+    "fastapi-users[sqlalchemy]==14.0.1",
+    "gunicorn>=23.0.0",
+    "imagekitio==4.2.0",
+    "python-dotenv>=1.2.1",
+    "streamlit>=1.52.2",
+    "uuid>=1.30",
+    "uvicorn[standard]>=0.38.0",
+]

@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+
+# Secrets
+.env
+
+# Python & Virtual Environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+.python-version
+
+# Database
+test.db
+*.sqlite3
+
+# VS Code settings
+.vscode/
