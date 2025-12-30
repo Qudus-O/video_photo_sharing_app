@@ -48,7 +48,7 @@ class Post(Base):
     user = relationship(argument="User", back_populates="posts")
 
 
-engine = create_async_engine(DATABASE_URL,echo=True)
+engine = create_async_engine(database_url,echo=True)
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
