@@ -15,21 +15,16 @@ from fastapi import Depends
 import os
 
 
-# DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 
-# 1. Default to local SQLite 
+
+# Default to local SQLite 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./test.db")
 
 
-# 2. Adjust for asyncpg if using PostgreSQL
-if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1)
-elif DATABASE_URL.startswith("postgresql://"):
-    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+# Adjust for asyncpg if using PostgreSQL
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
 
-
-# 3. Arguments for SQLite only
-connect_args = {"check_same_thread": False} if "sqlite" in DATABASE_URL else {}
 
 class Base(DeclarativeBase):
     pass    
@@ -53,7 +48,7 @@ class Post(Base):
     user = relationship(argument="User", back_populates="posts")
 
 
-engine = create_async_engine(DATABASE_URL,echo=True,connect_args=connect_args)
+engine = create_async_engine(DATABASE_URL,echo=True)
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
