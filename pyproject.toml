@@ -3,7 +3,7 @@ name = "FastAPI_Photo_and_Video_sharing_Web_App"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 dependencies = [
     "aiosqlite==0.21.0",
     "fastapi>=0.125.0",
