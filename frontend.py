@@ -3,7 +3,7 @@ import requests
 import base64
 import urllib.parse
 
-st.set_page_config(page_title="Simple Social Media Hub", layout="wide")
+st.set_page_config(page_title="Qbyte Media", layout="wide")
 
 # Initialize session state
 if 'token' not in st.session_state:
@@ -20,7 +20,8 @@ def get_headers():
 
 
 def login_page():
-    st.title("🚀 Welcome to Simple Social Media Hub")
+    st.title("🚀 Welcome to Qbyte Media")
+    st.subheader("Seamless Media Sharing • Powered by FastAPI")
 
     # Simple form with two buttons
     email = st.text_input("Email:")
