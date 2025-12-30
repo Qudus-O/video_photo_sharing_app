@@ -17,13 +17,22 @@ import os
 
 
 
-# Default to local SQLite 
-database_url = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./test.db")
 
+database_url = os.getenv("DATABASE_URL")
 
-# Adjust for asyncpg if using PostgreSQL
-if database_url and database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
+# 2. DEBUG: To determine the exact database url used
+print(f"DEBUG: Original URL is {database_url}")
+
+if not database_url:
+    # Fallback for local testing
+    database_url = "sqlite+aiosqlite:///./test.db"
+else:
+    # 3. ROBUST FIX: Handle both "postgres://" and "postgresql://"
+    # We force the URL to start with "postgresql+asyncpg://"
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql+asyncpg://", 1)
+    elif database_url.startswith("postgresql://"):
+        database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
 
 
 class Base(DeclarativeBase):
