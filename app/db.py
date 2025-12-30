@@ -12,9 +12,24 @@ from datetime import datetime
 
 from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
 from fastapi import Depends
+import os
 
 
-DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+# DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+
+# 1. Default to local SQLite 
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./test.db")
+
+
+# 2. Adjust for asyncpg if using PostgreSQL
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1)
+elif DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+
+
+# 3. Arguments for SQLite only
+connect_args = {"check_same_thread": False} if "sqlite" in DATABASE_URL else {}
 
 class Base(DeclarativeBase):
     pass    
@@ -38,7 +53,7 @@ class Post(Base):
     user = relationship(argument="User", back_populates="posts")
 
 
-engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(DATABASE_URL,echo=True,connect_args=connect_args)
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
