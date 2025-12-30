@@ -18,7 +18,7 @@ import os
 
 
 # Default to local SQLite 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./test.db")
+database_url = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./test.db")
 
 
 # Adjust for asyncpg if using PostgreSQL
