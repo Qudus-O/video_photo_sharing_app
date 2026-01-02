@@ -76,14 +76,14 @@ To run this project on your local machine:
 
 This project was built as a capstone to demonstrate full-stack engineering capabilities. A special thank you to the following creators for their educational content that guided the architectural decisions:
 
-* **[Tim Ruscica - TechwithTim]** - For the comprehensive guide on FastAPI Apps.
-* **[Raj Kapadia]** - For the insights on deploying FastAPI apps on Render.
+* **Tim Ruscica - TechwithTim** - For the comprehensive guide on FastAPI Apps.
+* **Raj Kapadia** - For the insights on deploying FastAPI apps on Render.
 
 ---
 
 ## 👨‍💻 Author
 
 ### Qudus
-* *Data Scientist & Machine Learning Engineer*
+* *Data Scientist and a Machine Learning Engineer*
 * [LinkedIn](https://linkedin.com/in/qudusoseni82)
   
